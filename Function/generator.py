@@ -1,40 +1,45 @@
 from faker import Faker
 import random
 import sys
+
 fake = Faker()
 
 def main():
-    generate(2)
+    generate_students(2)
+
 
 # Generate the list of students on list
-def generate(num, additional_info=False):
-    add = additional_info
-    students = []
-    if type(num) is int:
-        if add:
-            name, section, student_no, birthday, address, email, phone_no = generator(additional_info=True)
+def generate_students(num_students, additional_info=False):
+    if isinstance(num_students, int):
+        students = []
+        if additional_info:
+            for _ in range(num_students):
+                student_info = generate_student_info(additional_info=True)
+                student_info_keys = ['name', 'section', 'student_no', 'birthday', 'address', 'email', 'phone_no']
+                student_data = {key: value for key, value in zip(student_info_keys, student_info)}
+                students.append(student_data)
         else:
-            for i in range(num):
-                student_info = generator()
-                info_keys = ['name', 'section', 'student_number']
-                generate_list = {key: value for key, value in zip(info_keys, student_info)}
-                students.append(generate_list)
-                i += 1
+            for _ in range(num_students):
+                student_info = generate_student_info()
+                student_info_keys = ['name', 'section', 'student_number']
+                student_data = {key: value for key, value in zip(student_info_keys, student_info)}
+                students.append(student_data)
         return students
 
     else:
-        sys.exit('Enter how many students')
+        sys.exit('Please provide the number of students.')
+
 
 # Generate names, student,
-def generator(additional_info=False):
+def generate_student_info(additional_info=False):
     if additional_info:
         print('hey!')
     else:
         sections = ['A', 'B', 'C']
         name = fake.name()
         section = random.choice(sections)
-        student_no = random.randint(00000, 10000)
-        student_no = '2022' + str(student_no)
+        student_no = '2022' + str(random.randint(00000, 10000)).zfill(4)
         return name, section, student_no
 
-main()
+if __name__ == "__main__":
+    main()
