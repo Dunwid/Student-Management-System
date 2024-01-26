@@ -27,15 +27,28 @@ class Student:
     # Check if the name was properly formatted into Lastname, Name format
     @name.setter
     def name(self, name):
+        def format_name(input_name):
+            # Regex pattern for "First MiddleInitial. Last Suffix" format
+            pattern1 = r"^([A-Za-z]+)\s([A-Za-z])\.\s([A-Za-z]+)\s([A-Za-z]+)$"
+
+            # Regex pattern for "Last, First MiddleInitial. Suffix" format
+            pattern2 = r"^([A-Za-z]+),\s([A-Za-z]+)\s([A-Za-z])\.\s([A-Za-z]+)$"
+
+            match1 = re.match(pattern1, input_name)
+            match2 = re.match(pattern2, input_name)
+
+            if match1:
+                last_name, first_name, middle_initial, suffix = match1.groups()
+                return f"{last_name}, {first_name} {middle_initial}, {suffix}"
+            elif match2:
+                last_name, first_name, middle_initial, suffix = match2.groups()
+                return f"{last_name}, {first_name} {middle_initial}, {suffix}"
+            else:
+                raise ValueError('Invalid input format')
+
         name = name.strip()
-        matches = re.search(r"^([A-Za-z -]+(?:\s[A-Za-z -]+)*), ([A-Za-z -]+(?:\s[A-Za-z -]+)*)\s*([A-Za-z])?$", name)
-        if matches:
-            last_name = matches.group(1)
-            first_name = matches.group(2)
-            middle_initial = matches.group(3) if matches.group(3) else ''
-            self._name = f"{last_name}, {first_name} {middle_initial}".strip()
-        else:
-            raise ValueError('Invalid Name Format')
+        formatted_name = format_name(name)
+        self._name = formatted_name
 
     @property
     def section(self):
