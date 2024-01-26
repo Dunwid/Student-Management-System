@@ -76,7 +76,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
         section = section.upper()
         if section not in cls.SECTIONS:
             raise ValueError('Invalid Section')
-        return len(cls.SECTIONS[section])
+        return 'Number of students in Section {}: {}'.format(section, len(cls.SECTIONS[section]))
 
     # returns the number of Overall Students
     @classmethod
