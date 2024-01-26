@@ -7,10 +7,11 @@ class Student:
     # Segregate Students to their designated Section
     sections = {'A': [], 'B': [], 'C': []}
 
-    def __init__(self, name, number, section, age='', address='', email='', phone_number=''):
+    def __init__(self, name, number, section, birthday='', age='', address='', email='', phone_number=''):
         self.name = name
         self.number = number
         self.section = section
+        self.birthday = birthday
         self.age = age
         self.address = address
         self.email = email
@@ -27,14 +28,11 @@ class Student:
     @name.setter
     def name(self, name):
         name = name.strip()
-        matches = re.search(r"^([A-Z].+), ([A-Z].+)$", name)
+        matches = re.search(r"^([A-Za-z -]+), ([A-Za-z -.]+)$", name)
         if matches:
             self._name = name
         else:
-            # To FIX
-            # with phone_number, student_number
-            first, last = matches.group(1).split(' ')
-            self._name = '{}, {}'.format(last, first)
+            ...
 
     @property
     def section(self):
