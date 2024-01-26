@@ -67,7 +67,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
 
     # returns the number of SECTIONS
     @classmethod
-    def all_SECTIONS(cls):
+    def all_sections(cls):
         return len(cls.SECTIONS)
 
     # returns the number of student per section
