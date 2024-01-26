@@ -5,7 +5,7 @@ from tabulate import tabulate
 class Student:
 
     # Segregate Students to their designated Section
-    sections = {'A': [], 'B': [], 'C': []}
+    SECTIONS = {'A': [], 'B': [], 'C': []}
 
     def __init__(self, name, number, section, birthday='', age='', address='', email='', phone_number=''):
         self.name = name
@@ -28,11 +28,14 @@ class Student:
     @name.setter
     def name(self, name):
         name = name.strip()
-        matches = re.search(r"^([A-Za-z -]+), ([A-Za-z -.]+)$", name)
+        matches = re.search(r"^([A-Za-z -]+(?:\s[A-Za-z -]+)*), ([A-Za-z -]+(?:\s[A-Za-z -]+)*)\s*([A-Za-z])?$", name)
         if matches:
-            self._name = name
+            last_name = matches.group(1)
+            first_name = matches.group(2)
+            middle_initial = matches.group(3) if matches.group(3) else ''
+            self._name = f"{last_name}, {first_name} {middle_initial}".strip()
         else:
-            ...
+            raise ValueError('Invalid Name Format')
 
     @property
     def section(self):
@@ -46,7 +49,7 @@ class Student:
         if section not in ['A', 'B', 'C']:
             raise ValueError('Invalid Section')
         self._section = section
-        Student.sections[self.section] = [self.fullname]
+        self.SECTIONS[self.section] = [self.fullname]
 
     # Prints name in firstname lastname format
     @property
@@ -62,10 +65,10 @@ Address: {}
 Email: {}
 Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number)
 
-    # returns the number of sections
+    # returns the number of SECTIONS
     @classmethod
-    def all_sections(cls):
-        return len(Student.sections)
+    def all_SECTIONS(cls):
+        return len(cls.SECTIONS)
 
     # returns the number of student per section
     @classmethod
@@ -74,16 +77,16 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
         if section not in ['A', 'B', 'C']:
             raise ValueError('Invalid Section')
         cls.section = section
-        headcount = len(Student.sections[cls.section])
+        headcount = len(Student.SECTIONS[cls.section])
         return headcount
 
     # returns the number of Overall Students
     @classmethod
     def count_all(cls):
         tabulate.PRESERVE_WHITESPACE = True
-        a = len(Student.sections['A'])
-        b = len(Student.sections['B'])
-        c = len(Student.sections['C'])
+        a = len(Student.SECTIONS['A'])
+        b = len(Student.SECTIONS['B'])
+        c = len(Student.SECTIONS['C'])
         overall = a + b + c
         table = [['Section A', a], ['Section B', b], ['Section C', c], ['Overall', overall]]
         headers = ['Section', 'Number of\nStudents']
