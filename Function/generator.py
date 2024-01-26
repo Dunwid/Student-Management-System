@@ -1,26 +1,29 @@
 from faker import Faker
 import random
+import sys
 fake = Faker()
+
+def main():
+    generate(2)
 
 # Generate the list of students on list
 def generate(num, additional_info=False):
     add = additional_info
-    student = []
     students = []
-    if num is int:
+    if type(num) is int:
         if add:
-            generator(additional_info=True)
+            name, section, student_no, birthday, address, email, phone_no = generator(additional_info=True)
         else:
             for i in range(num):
-                student1 = {}
-                name, section, student_no = generator()
-                student1['name'] = name
-                student1['section'] = section
-                student1['student_no'] = student_no
+                student_info = generator()
+                info_keys = ['name', 'section', 'student_number']
+                generate_list = {key: value for key, value in zip(info_keys, student_info)}
+                students.append(generate_list)
                 i += 1
-                student.append(student1)
+        return students
+
     else:
-        raise ValueError('Enter the Number of Students')
+        sys.exit('Enter how many students')
 
 # Generate names, student,
 def generator(additional_info=False):
@@ -33,3 +36,5 @@ def generator(additional_info=False):
         student_no = random.randint(00000, 10000)
         student_no = '2022' + str(student_no)
         return name, section, student_no
+
+main()

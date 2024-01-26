@@ -7,10 +7,11 @@ class Student:
     # Segregate Students to their designated Section
     sections = {'A': [], 'B': [], 'C': []}
 
-    def __init__(self, name, number, section, age='', address='', email='', phone_number=''):
+    def __init__(self, name, number, section, birthday='', age='', address='', email='', phone_number=''):
         self.name = name
         self.number = number
         self.section = section
+        self.birthday = birthday
         self.age = age
         self.address = address
         self.email = email
