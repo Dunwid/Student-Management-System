@@ -74,16 +74,13 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     @classmethod
     def count(cls, section):
         section = section.upper()
-        if section not in ['A', 'B', 'C']:
+        if section not in cls.SECTIONS:
             raise ValueError('Invalid Section')
-        cls.section = section
-        headcount = len(Student.SECTIONS[cls.section])
-        return headcount
+        return len(cls.SECTIONS[section])
 
     # returns the number of Overall Students
     @classmethod
     def count_all(cls):
-        tabulate.PRESERVE_WHITESPACE = True
         a = len(Student.SECTIONS['A'])
         b = len(Student.SECTIONS['B'])
         c = len(Student.SECTIONS['C'])
