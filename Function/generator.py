@@ -1,11 +1,13 @@
 from faker import Faker
+
 import random
 import sys
 
 fake = Faker()
 
+
 def main():
-    generate_students(2)
+    print(generate_students(1, additional_info=True))
 
 
 # Generate the list of students on list
@@ -33,13 +35,22 @@ def generate_students(num_students, additional_info=False):
 # Generate names, student,
 def generate_student_info(additional_info=False):
     if additional_info:
-        print('hey!')
+        sections = ['A', 'B', 'C']
+        name = fake.name()
+        section = random.choice(sections)
+        student_no = '202210' + str(random.randint(000, 600)).zfill(3)
+        birthday = fake.date_of_birth(minimum_age=18, maximum_age=22).strftime('%m/%d/%Y')
+        address = fake.address()
+        email = fake.email()
+        phone_number = f'09{fake.msisdn()[4:]}'
+        return name, section, student_no, birthday, address, email, phone_number
     else:
         sections = ['A', 'B', 'C']
         name = fake.name()
         section = random.choice(sections)
         student_no = '2022' + str(random.randint(00000, 10000)).zfill(5)
         return name, section, student_no
+
 
 if __name__ == "__main__":
     main()
