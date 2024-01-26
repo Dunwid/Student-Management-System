@@ -10,9 +10,13 @@ def main():
     print(generate_students(1, additional_info=True))
 
 
-# Generate the list of students on list
+# Generate the lists of Students
+# Returns a list
+# Asks for an int argument, additional_info is optional
+# Will limit num_students into 20 to avoid crash
+# Provide additional_info=True, if personal information was needed.
 def generate_students(num_students, additional_info=False):
-    if isinstance(num_students, int):
+    if isinstance(num_students, int) and num_students <= 20:
         students = []
         if additional_info:
             for _ in range(num_students):
@@ -27,13 +31,16 @@ def generate_students(num_students, additional_info=False):
                 student_data = {key: value for key, value in zip(student_info_keys, student_info)}
                 students.append(student_data)
         return students
+    # Exits if num_students is invalid
 
     else:
         sys.exit('Please provide the number of students.')
 
 
-# Generate names, student,
+# Generate Students data
 def generate_student_info(additional_info=False):
+    # Provide personal info, if additional_info = True
+    # If not, proceeds with school information only
     if additional_info:
         sections = ['A', 'B', 'C']
         name = fake.name()
