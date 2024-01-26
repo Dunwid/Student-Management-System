@@ -38,7 +38,7 @@ def generate_student_info(additional_info=False):
         sections = ['A', 'B', 'C']
         name = fake.name()
         section = random.choice(sections)
-        student_no = '2022' + str(random.randint(00000, 10000)).zfill(4)
+        student_no = '2022' + str(random.randint(00000, 10000)).zfill(5)
         return name, section, student_no
 
 if __name__ == "__main__":
