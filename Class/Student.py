@@ -28,16 +28,17 @@ class Student:
     # Check if the name was properly formatted into Lastname, Name format
     @name.setter
     def name(self, name):
-        format = name.strip()
+        name = name.strip()
         if matches := re.match(r"^([A-z][a-z ]+), ([A-z][A-za-z ]+) ([A-Z].?)? (Jr.?|Sr.?)?$", name):
-            self._name = matches
+            self._name = name
         elif matches := re.match(r"^([A-Z][A-za-z ]+) ([A-Z].)? ([A-z][a-z ]+) (Jr.?|Sr.?)?$", name):
-            if matches(2):
-                self._name = "{}, {} {}".format(matches.group(3), matches.groups(1), matches.groups(2))
-            elif matches(4):
-                self._name = "{}, {} , {}".format(matches.group(3), matches.groups(1), matches.groups(4))
-            elif matches(2) and matches (4):
-                self._name = "{}, {} {}, {}".format(matches.group(3), matches.groups(1), matches.groups(2), matches.groups(4))
+            if matches.group(2):
+                self._name = "{}, {} {}".format(matches.group(3), matches.groups(1), matches.group(2))
+            elif matches.group(2):
+                self._name = "{}, {} , {}".format(matches.group(3), matches.group(1), matches.group(4))
+            elif matches.group(2) and matches.group(4):
+                self._name = "{}, {} {}, {}".format(matches.group(3), matches.group(1),
+                                                    matches.group(2), matches.group(4))
         else:
             sys.exit('Invalid name format')
 
@@ -58,8 +59,14 @@ class Student:
     # Prints name in firstname lastname format
     @property
     def fullname(self):
-        last, first = self.name.split(', ')
-        return f"{first} {last}"
+        name = self._name
+        if matches := re.match(r"^([A-za-z ]+.), ([A-za-z ]+.?,?) (Jr.|Sr.)?$", name):
+            if matches.group(3):
+                return "{} {} {}".format(matches.group(2), matches.group(1), matches.group(3))
+            else:
+                return "{} {}".format(matches.group(2), matches.group(1))
+        elif matches := re.match(r"^([A-za-z ]+.) ([A-za-z ]+.?)$", name):
+            return matches
 
     # Prints personal information
     @property
