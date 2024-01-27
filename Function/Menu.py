@@ -11,18 +11,16 @@ def enter_key():
         try:
             button = input('Enter key: ').upper()
             match button:
-                case 'G':
+                case 'C':
                     print("Monday")
-                case 'I':
-                    print("Tuesday")
-                case 'S':
-                    print("Wednesday")
                 case 'R':
                     print("Thursday")
                 case 'U':
                     print("Friday")
                 case 'D':
                     print("Saturday")
+                case 'S':
+                    print("Wednesday")
                 case 'X':
                     break
                 case _:
