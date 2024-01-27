@@ -117,4 +117,5 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
 
     @classmethod
     def data(cls):
-        return cls.student_database
+        sorted_dict = dict(sorted(cls.student_database.items()))
+        return sorted_dict
