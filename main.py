@@ -6,6 +6,7 @@ def main():
 
     print(bert1.name)
     print(bert1.fullname)
+    print(Student.count_all())
 
 if __name__ == '__main__':
     main()

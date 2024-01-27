@@ -64,6 +64,8 @@ class Student:
                 return "{} {} {}".format(matches.group(2), matches.group(1), matches.group(3))
             else:
                 return "{} {}".format(matches.group(2), matches.group(1))
+        else:
+            sys.exit('Name error!')
 
     # Prints personal information
     @property
