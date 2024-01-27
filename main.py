@@ -1,11 +1,13 @@
 from Class import Student
+from Function import students_object
+
 Student = Student.Student
+generate_students = students_object.generate_students()
 
 
 def main():
-    bert1 = Student('Travis Simon', '202210106', 'B')
+    students = generate_students(3)
 
-    print(bert1.name)
 
 if __name__ == '__main__':
     main()

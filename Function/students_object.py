@@ -4,24 +4,22 @@ Student = Student.Student
 
 
 def main():
-    print(generate_students(2))
-
+    x = generate_students(2)
+    for keys, values in x.items():
+        print(f'{keys}, {values}')
 
 def generate_students(num, additional_info=False):
+    masterlist = {}
     student_data = {}
     student_data = (generate(num, additional_info))
     number_of_students = len(student_data)
-    print(student_data)
     students = [Student(**data) for data in student_data]
 
     for student in students:
-        print(student)
+        student_lastname = student.name.split(',')
+        masterlist[student_lastname[0]] = student
 
-    # for _ in range(number_of_students):
-    #     ...
-    #
-    # return students_data
-
+    return masterlist
 
 
 if __name__ == "__main__":
