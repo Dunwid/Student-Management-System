@@ -1,20 +1,28 @@
 from tabulate import tabulate
+from Class import Student
+from Function import students_object
+Student = Student.Student
+generate_student_data = students_object.generate_students
 
 
 def main():
-    enter_key()
+    handle_user_input()
 
 
-def enter_key():
-    menu()
+def handle_user_input():
+    display_menu()
     while True:
         try:
-            button = input('Enter key: ').upper()
-            match button:
+            user_input = input('Enter key: ').upper()
+            match user_input:
                 case 'C':
-                    print("Monday")
+                    num_students = int(input('How many students? '))
+                    if isinstance(num_students, int):
+                        students = generate_student_data(num_students)
+                        for _ in students:
+                            print(_)
                 case 'R':
-                    print("Thursday")
+                    print(Student.data())
                 case 'U':
                     print("Friday")
                 case 'D':
@@ -28,16 +36,16 @@ def enter_key():
                 case _:
                     raise ValueError
         except ValueError:
-            print('Invalid KEY')
+            print('Invalid command')
     members()
 
 
-def menu():
+def display_menu():
     table = [['C', 'Create Students List'], ['R', 'Read Students List'],
              ['U', 'Update Students List'], ['D', 'Delete Students List'],
-             ['S', 'Save List'], ['X', 'Exit Program'], ['Z', 'View Object/Class Functions']
+             ['S', 'Save List'], ['X', 'Exit Program'], ['O', 'Options']
              ]
-    print("-----------MENU------------")
+    print("-----------display_menu------------")
     print(tabulate(table, tablefmt="grid"))
 
 
