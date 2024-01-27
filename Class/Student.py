@@ -47,7 +47,7 @@ class Student:
         name = name.strip()
         if matches := re.match(r"^([A-z][a-z ]+), ([A-z][A-za-z ]+) ?([A-Z].?)? ?(Jr.?|Sr.?)?$", name):
             self._name = name
-        elif matches := re.match(r"^([A-Z][A-za-z ]+) ([A-Z].)? ([A-z][a-z ]+) ?(Jr.?|Sr.?)?$", name):
+        elif matches := re.match(r"^([A-Z][A-za-z ]+) ?([A-Z].)? ([A-z][a-z ]+) ?(Jr.?|Sr.?)?$", name):
             if matches.group(2) and matches.group(4):
                 self._name = "{}, {} {}, {}".format(matches.group(3).strip(), matches.group(1),
                                                     matches.group(2), matches.group(4))
@@ -55,6 +55,8 @@ class Student:
                 self._name = "{}, {} , {}".format(matches.group(3).strip(), matches.group(1), matches.group(4))
             elif matches.group(2):
                 self._name = "{}, {} {}".format(matches.group(3).strip(), matches.group(1), matches.group(2))
+            else:
+                self._name = "{}, {}".format(matches.group(3).strip(), matches.group(1))
         else:
             sys.exit('Invalid name format')
 

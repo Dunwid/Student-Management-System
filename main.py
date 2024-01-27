@@ -3,7 +3,9 @@ Student = Student.Student
 
 
 def main():
-    pass
+    bert1 = Student('Travis Simon', '202210106', 'B')
+
+    print(bert1.name)
 
 if __name__ == '__main__':
     main()

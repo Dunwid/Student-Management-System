@@ -43,7 +43,7 @@ def generate_student_info(additional_info=False):
     # If not, proceeds with school information only
     if additional_info:
         sections = ['A', 'B', 'C']
-        name = fake.name()
+        name = fake.first_name() + fake.last_name()
         section = random.choice(sections)
         student_no = '202210' + str(random.randint(000, 600)).zfill(3)
         birthday = fake.date_of_birth(minimum_age=18, maximum_age=22).strftime('%m/%d/%Y')
