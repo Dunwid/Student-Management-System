@@ -21,13 +21,13 @@ def generate_students(num_students, additional_info=False):
         if additional_info:
             for _ in range(num_students):
                 student_info = generate_student_info(additional_info=True)
-                student_info_keys = ['name', 'section', 'student_no', 'birthday', 'address', 'email', 'phone_no']
+                student_info_keys = ['name', 'section', 'number', 'birthday', 'address', 'email', 'phone_no']
                 student_data = {key: value for key, value in zip(student_info_keys, student_info)}
                 students.append(student_data)
         else:
             for _ in range(num_students):
                 student_info = generate_student_info()
-                student_info_keys = ['name', 'section', 'student_number']
+                student_info_keys = ['name', 'section', 'number']
                 student_data = {key: value for key, value in zip(student_info_keys, student_info)}
                 students.append(student_data)
         return students

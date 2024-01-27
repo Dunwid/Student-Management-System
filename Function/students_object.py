@@ -8,13 +8,19 @@ def main():
 
 
 def generate_students(num, additional_info=False):
-    students = {}
-    students_data = generate(num, additional_info)
-    number_of_students = len(students_data)
-    for _ in range(number_of_students):
-        ...
+    student_data = {}
+    student_data = (generate(num, additional_info))
+    number_of_students = len(student_data)
+    print(student_data)
+    students = [Student(**data) for data in student_data]
 
-    return students_data
+    for student in students:
+        print(student)
+
+    # for _ in range(number_of_students):
+    #     ...
+    #
+    # return students_data
 
 
 
