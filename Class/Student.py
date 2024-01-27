@@ -30,7 +30,6 @@ class Student:
         return {
             'name': self.name,
             'section': self.section,
-            'student_no': self.number,
             'birthday': self.birthday,
             'address': self.address,
             'email': self.email,
