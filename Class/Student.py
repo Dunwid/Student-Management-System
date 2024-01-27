@@ -1,5 +1,6 @@
 import re
 from tabulate import tabulate
+import sys
 
 
 class Student:
@@ -27,7 +28,18 @@ class Student:
     # Check if the name was properly formatted into Lastname, Name format
     @name.setter
     def name(self, name):
-        
+        format = name.strip()
+        if matches := re.match(r"^([A-z][a-z ]+), ([A-z][A-za-z ]+) ([A-Z].?)? (Jr.?|Sr.?)?$", name):
+            self._name = matches
+        elif matches := re.match(r"^([A-Z][A-za-z ]+) ([A-Z].)? ([A-z][a-z ]+) (Jr.?|Sr.?)?$", name):
+            if matches(2):
+                self._name = "{}, {} {}".format(matches.group(3), matches.groups(1), matches.groups(2))
+            elif matches(4):
+                self._name = "{}, {} , {}".format(matches.group(3), matches.groups(1), matches.groups(4))
+            elif matches(2) and matches (4):
+                self._name = "{}, {} {}, {}".format(matches.group(3), matches.groups(1), matches.groups(2), matches.groups(4))
+        else:
+            sys.exit('Invalid name format')
 
     @property
     def section(self):
