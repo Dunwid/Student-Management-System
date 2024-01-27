@@ -21,6 +21,8 @@ def enter_key():
                     print("Saturday")
                 case 'S':
                     print("Wednesday")
+                case 'O':
+                    print("Wednesday")
                 case 'X':
                     break
                 case _:
@@ -33,7 +35,7 @@ def enter_key():
 def menu():
     table = [['C', 'Create Students List'], ['R', 'Read Students List'],
              ['U', 'Update Students List'], ['D', 'Delete Students List'],
-             ['S', 'Save List'], ['X', 'Exit Program']
+             ['S', 'Save List'], ['X', 'Exit Program'], ['Z', 'View Object/Class Functions']
              ]
     print("-----------MENU------------")
     print(tabulate(table, tablefmt="grid"))
