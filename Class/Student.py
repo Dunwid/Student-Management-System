@@ -29,8 +29,8 @@ class Student:
     @name.setter
     def name(self, name):
         name = name.strip()
-        if matches := re.match(r"^([A-z][a-z ]+), ([A-z][A-za-z ]+) ([A-Z].?)? (Jr.?|Sr.?)?$", name):
-            self._name = matches
+        if matches := re.match(r"^([A-z][a-z ]+), ([A-z][A-za-z ]+) ?([A-Z].?)? ?(Jr.?|Sr.?)?$", name):
+            self._name = name
         elif matches := re.match(r"^([A-Z][A-za-z ]+) ([A-Z].)? ([A-z][a-z ]+) ?(Jr.?|Sr.?)?$", name):
             if matches.group(2) and matches.group(4):
                 self._name = "{}, {} {}, {}".format(matches.group(3).strip(), matches.group(1),
