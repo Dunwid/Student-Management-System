@@ -1,6 +1,7 @@
-from generator import generate_students as generate_student_data
+from Function import generator
 from Class import Student
 Student = Student.Student
+generate_student_data = generator.generate_students
 
 
 def main():
@@ -15,7 +16,7 @@ def generate_students(num, additional_info=False):
 
     master_list = {}
     for student in students:
-        last_name = student.name.split(',')[0].strip
+        last_name = student.name.split(',')
         master_list[last_name[0]] = student
     return master_list
 
