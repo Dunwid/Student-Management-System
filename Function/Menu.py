@@ -24,7 +24,7 @@ def handle_user_input():
                 case 'R':
                     print(Student.data())
                 case 'U':
-                    print("Friday")
+                    pass
                 case 'D':
                     print("Saturday")
                 case 'S':
