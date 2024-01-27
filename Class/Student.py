@@ -4,6 +4,8 @@ import sys
 
 
 class Student:
+    # Class dictionary to store all student objects
+    student_database = {}
 
     # Segregate Students to their designated Section
     SECTIONS = {'A': [], 'B': [], 'C': []}
@@ -17,6 +19,10 @@ class Student:
         self.address = address
         self.email = email
         self.phone_number = phone_number
+
+        self.student_database[self.number] = self.to_dict()
+
+
 
     def __str__(self):
         return "Hello {}! Student No.{} from BSCS 2{}".format(self.fullname, self.number, self.section.upper())
@@ -32,7 +38,7 @@ class Student:
             'email': self.email,
             'phone_no': self.phone_number
         }
-    
+
     @property
     def name(self):
         return self._name
@@ -110,3 +116,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
         table = [['Section A', a], ['Section B', b], ['Section C', c], ['Overall', overall]]
         headers = ['Section', 'Number of\nStudents']
         return tabulate(table, headers, tablefmt='grid', maxcolwidths=[9, 1])
+
+    @classmethod
+    def data(cls):
+        return cls.student_database
