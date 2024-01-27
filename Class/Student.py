@@ -120,4 +120,4 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     @classmethod
     def data(cls):
         sorted_dict = dict(sorted(cls.student_database.items()))
-        return sorted_dict
+        return tabulate([[k, v] for k, v in sorted_dict.items()], headers=['Student Number', 'INFORMATIONS'], tablefmt='pretty')
