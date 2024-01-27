@@ -1,6 +1,7 @@
 import re
 from tabulate import tabulate
 import sys
+import pickle
 
 
 class Student:
@@ -21,6 +22,8 @@ class Student:
         self.phone_number = phone_number
 
         self.student_database[int(self.number)] = self.to_dict()
+        self.save_students()
+
 
     def __str__(self):
         return "Hello {}! Student No.{} from BSCS 2{}".format(self.fullname, self.number, self.section.upper())
@@ -57,7 +60,7 @@ class Student:
             else:
                 self._name = "{}, {}".format(matches.group(3).strip(), matches.group(1))
         else:
-            sys.exit('Invalid name format')
+            raise ValueError('Invalid name format')
 
     @property
     def section(self):
@@ -120,3 +123,17 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     def data(cls):
         sorted_dict = dict(sorted(cls.student_database.items()))
         return tabulate([[k, v] for k, v in sorted_dict.items()], headers=['Student Number', 'INFORMATIONS'], tablefmt='pretty')
+
+    # Save database
+    @classmethod
+    def save_students(cls):
+        with open('student_data.pkl', 'wb') as file:
+            pickle.dump(cls.student_database, file)
+
+    @classmethod
+    def load_students(cls):
+        try:
+            with open('student_file.pkl', 'rb') as f:
+                return pickle.load(f)  # deserialize using load()
+        except FileNotFoundError:
+            print('File does not exist')
