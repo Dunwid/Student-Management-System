@@ -8,7 +8,12 @@ def main():
 
 
 def generate_students(num, additional_info=False):
+    students = {}
     students_data = generate(num)
+    number_of_students = len(students_data)
+    for _ in range(number_of_students):
+        ...
+
     return students_data
 
 

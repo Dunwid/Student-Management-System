@@ -21,6 +21,18 @@ class Student:
     def __str__(self):
         return "Hello {}! Student No.{} from BSCS 2{}".format(self.fullname, self.number, self.section.upper())
 
+    # Students data
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'section': self.section,
+            'student_no': self.number,
+            'birthday': self.birthday,
+            'address': self.address,
+            'email': self.email,
+            'phone_no': self.phone_number
+        }
+    
     @property
     def name(self):
         return self._name
