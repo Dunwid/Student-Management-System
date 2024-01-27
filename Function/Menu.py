@@ -31,11 +31,11 @@ def enter_key():
 
 
 def menu():
-    table = [['G', 'Generate Students'], ['I', 'Input Students'], ['S', 'Save'],
-             ['R', 'See Students'], ['U', 'Update Students'], ['D', 'Delete Students'],
-             ['X', 'Exit Program']
+    table = [['C', 'Create Students List'], ['R', 'Read Students List'],
+             ['U', 'Update Students List'], ['D', 'Delete Students List'],
+             ['S', 'Save List'], ['X', 'Exit Program']
              ]
-    print("----------MENU-----------")
+    print("-----------MENU------------")
     print(tabulate(table, tablefmt="grid"))
 
 
