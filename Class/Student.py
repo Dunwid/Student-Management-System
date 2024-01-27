@@ -33,7 +33,7 @@ class Student:
             self._name = name
         elif matches := re.match(r"^([A-Z][A-za-z ]+) ([A-Z].)? ([A-z][a-z ]+) (Jr.?|Sr.?)?$", name):
             if matches.group(2):
-                self._name = "{}, {} {}".format(matches.group(3), matches.groups(1), matches.group(2))
+                self._name = "{}, {} {}".format(matches.group(3), matches.group(1), matches.group(2))
             elif matches.group(2):
                 self._name = "{}, {} , {}".format(matches.group(3), matches.group(1), matches.group(4))
             elif matches.group(2) and matches.group(4):
