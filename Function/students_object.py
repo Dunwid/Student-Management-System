@@ -1,4 +1,4 @@
-from generator import generate_students as generate
+from generator import generate_students as generate_student_data
 from Class import Student
 Student = Student.Student
 
@@ -8,18 +8,16 @@ def main():
     for keys, values in x.items():
         print(f'{keys}, {values}')
 
+
 def generate_students(num, additional_info=False):
-    masterlist = {}
-    student_data = {}
-    student_data = (generate(num, additional_info))
-    number_of_students = len(student_data)
+    student_data = (generate_student_data(num, additional_info))
     students = [Student(**data) for data in student_data]
 
+    master_list = {}
     for student in students:
-        student_lastname = student.name.split(',')
-        masterlist[student_lastname[0]] = student
-
-    return masterlist
+        last_name = student.name.split(',')[0].strip
+        master_list[last_name[0]] = student
+    return master_list
 
 
 if __name__ == "__main__":
