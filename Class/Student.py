@@ -20,9 +20,7 @@ class Student:
         self.email = email
         self.phone_number = phone_number
 
-        self.student_database[self.number] = self.to_dict()
-
-
+        self.student_database[int(self.number)] = self.to_dict()
 
     def __str__(self):
         return "Hello {}! Student No.{} from BSCS 2{}".format(self.fullname, self.number, self.section.upper())
