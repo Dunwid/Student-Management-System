@@ -1,11 +1,8 @@
-from Class import Student
-from Function import students_object
-Student = Student.Student
+from Function import Menu
+crud = Menu.handle_user_input()
 
 def main():
-    bert1 = Student('Bert Malinis', 202210612, 'B')
-
-    print(Student.count('B'))
+    crud()
 
 
 if __name__ == '__main__':
