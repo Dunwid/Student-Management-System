@@ -106,7 +106,6 @@ def display_menu():
 
 def display_options():
     table = [['V', 'View all sections'], ['Z', 'View Students in Section'], ['G', 'Greet all'], ['X', 'Exit Options']]
-    print("-----------OPTIONS------------")
     print(tabulate(table, headers=['OPTIONS'], tablefmt="grid"))
 
 
