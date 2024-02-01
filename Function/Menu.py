@@ -11,7 +11,7 @@ def main():
 
 def handle_user_input():
     display_menu()
-    students = ()
+    all_students = []
     while True:
         try:
             user_input = input('ENTER KEY: ').upper()
@@ -20,6 +20,7 @@ def handle_user_input():
                     num_students = int(input('How many students? '))
                     if isinstance(num_students, int):
                         students = generate_student_data(num_students)
+                        all_students.append(students)
                 case 'R':
                     print(Student.data())
                 case 'U':
@@ -69,8 +70,9 @@ def handle_user_input():
                                     section = input('COUNT SECTION: ').upper()
                                     print(Student.count(section))
                                 case 'G':
-                                    for keys, values in students.items():
-                                        print(f'{values}')
+                                    for i in all_students:
+                                        for keys, values in i.items():
+                                            print(f'{values}')
                                 case 'X':
                                     break
                                 case '_':
@@ -86,7 +88,6 @@ def handle_user_input():
         except EOFError:
             break
     members()
-
 
 def display_menu():
     # table = [['C', 'Create Students List'], ['R', 'Read Students List'],
