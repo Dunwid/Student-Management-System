@@ -24,7 +24,6 @@ class Student:
         self.student_database[int(self.number)] = self.to_dict()
         self.save_students()
 
-
     def __str__(self):
         return "Hello {}! Student No.{} from BSCS 2{}".format(self.fullname, self.number, self.section.upper())
 
@@ -121,8 +120,22 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
 
     @classmethod
     def data(cls):
+        table = []
         sorted_dict = dict(sorted(cls.student_database.items()))
-        return tabulate([[k, v] for k, v in sorted_dict.items()], headers=['Student Number', 'INFORMATIONS'], tablefmt='pretty')
+        for number, infos in sorted_dict.items():
+            combined = []
+            info = []
+            for k, v in infos.items():
+                k = k.title()
+                v.title()
+                info.append(f'{k}: {v}\n')
+            combined.append(number)
+            info = ' '.join(map(str, info))
+            combined.append(info)
+            table.append(combined)
+
+        return tabulate(table, headers=['Student Number', 'INFORMATIONS'], tablefmt='pretty', stralign="left")
+    # return tabulate([[k, v] for k, v in sorted_dict.items()], headers=['Student Number', 'INFORMATIONS'], tablefmt='pretty')
 
     # Save database
     @classmethod
@@ -145,9 +158,6 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     @classmethod
     def update(cls, name, change, to):
         for number, info in cls.student_database.items():
-            last_name = []
             last_name = cls.student_database[number]['name'].split(',')
             if last_name[0] == name:
                 cls.student_database[number][change] = to
-
-
