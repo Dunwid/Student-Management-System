@@ -125,9 +125,9 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
             countings.append(student)
             table.append(countings)
             i += 1
-        count = [f'TOTAL COUNT:', f'{len(cls.SECTIONS[section])}']
+        count = ['TOTAL COUNT', f'{len(cls.SECTIONS[section])}']
         table.append(count)
-        return tabulate(table, headers=[f'LIST OF STUDENTS FROM SECTION {section}'], tablefmt="grid")
+        return tabulate(table, headers=[f'SECTION {section}', 'STUDENT NAMES'], tablefmt="grid")
         # return 'Section {} TOTAL COUNT: {}'.format(section, len(cls.SECTIONS[section]))
 
     # returns the number of Overall Students
