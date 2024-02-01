@@ -12,6 +12,7 @@ def main():
 def handle_user_input():
     display_menu()
     all_students = []
+    students = []
     while True:
         try:
             user_input = input('ENTER KEY: ').upper()
@@ -74,6 +75,7 @@ def handle_user_input():
                                         for keys, values in i.items():
                                             print(f'{values}')
                                 case 'X':
+                                    display_menu()
                                     break
                                 case '_':
                                     raise ValueError
@@ -89,6 +91,7 @@ def handle_user_input():
             break
     members()
 
+
 def display_menu():
     # table = [['C', 'Create Students List'], ['R', 'Read Students List'],
     #          ['U', 'Update Students List'], ['D', 'Delete Students List'],
@@ -100,6 +103,7 @@ def display_menu():
              ]
     print(tabulate(table, headers=['KEY', 'MENU LISTS'], tablefmt="grid"))
 
+
 def display_options():
     table = [['V', 'View all sections'], ['Z', 'View Students in Section'], ['G', 'Greet all'], ['X', 'Exit Options']]
     print("-----------OPTIONS------------")
@@ -107,7 +111,7 @@ def display_options():
 
 
 def members():
-    return print(""""
+    return print("""
     STUDENT MANAGEMENT SYSTEM
     BSCS 2B PROJECT
 
