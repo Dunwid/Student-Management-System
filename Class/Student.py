@@ -139,7 +139,15 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
             print('File does not exist')
 
     @classmethod
-    def remove_students(cls, number):
+    def remove(cls, number):
         cls.student_database.pop(number, None)
+
+    @classmethod
+    def update(cls, name, change, to):
+        for number, info in cls.student_database.items():
+            last_name = []
+            last_name = cls.student_database[number]['name'].split(',')
+            if last_name[0] == name:
+                cls.student_database[number][change] = to
 
 

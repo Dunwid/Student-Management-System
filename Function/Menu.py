@@ -11,6 +11,7 @@ def main():
 
 def handle_user_input():
     display_menu()
+    students = ()
     while True:
         try:
             user_input = input('Enter key: ').upper()
@@ -19,15 +20,42 @@ def handle_user_input():
                     num_students = int(input('How many students? '))
                     if isinstance(num_students, int):
                         students = generate_student_data(num_students)
-                        for _ in students:
-                            print(_)
+                        print(students)
                 case 'R':
                     print(Student.data())
                 case 'U':
-                    pass
+                    if len(students) > 0:
+                        tries = 0
+                        while True:
+                            try:
+                                name = input("Enter last name: ").title()
+                                if name in students:
+                                    tries = 0
+                                    change = input("Change: ").lower()
+                                    if change in ['name', 'number', 'section', 'birthday', 'age', 'address', 'email', 'phone_number']:
+                                        value = input(f"Enter new {change}: ")
+                                        Student.update(name, change, value)
+                                        break
+                                    else:
+                                        raise ValueError
+                                else:
+                                    raise ValueError
+                            except ValueError:
+                                if tries == 2:
+                                    print('Limit reached')
+                                    break
+                                else:
+                                    tries += 1
+                                    if tries == 2:
+                                        print(f'Name not recognized. {3 - tries} chance left')
+                                    else:
+                                        print(f'Name not recognized. {3 - tries} chances left')
+                                    pass
+                    else:
+                        print('Database is empty')
                 case 'D':
-                    remove = int(input("Enter Student Number: "))
-                    Student.remove_students(remove)
+                    number = int(input("Enter Student Number: "))
+                    Student.remove(number)
                 case 'S':
                     print("Wednesday")
                 case 'O':
@@ -38,6 +66,8 @@ def handle_user_input():
                     raise ValueError
         except ValueError:
             print('Invalid command')
+        except EOFError:
+            break
     members()
 
 
