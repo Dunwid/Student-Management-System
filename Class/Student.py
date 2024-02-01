@@ -125,7 +125,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
             countings.append(student)
             table.append(countings)
             i += 1
-        count = ['TOTAL COUNT', f'{len(cls.SECTIONS[section])}']
+        count = ['TOTAL COUNT', f'{len(section_students)}']
         table.append(count)
         return tabulate(table, headers=[f'SECTION {section}', 'STUDENT NAMES'], tablefmt="grid")
         # return 'Section {} TOTAL COUNT: {}'.format(section, len(cls.SECTIONS[section]))
@@ -151,7 +151,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
             for k, v in infos.items():
                 k = k.title()
                 v.title()
-                info.append(f'{k}: {v}\n')
+                info.append(f'{k}: {v}')
             combined.append(number)
             info = ' '.join(map(str, info))
             combined.append(info)
