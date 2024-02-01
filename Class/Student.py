@@ -6,7 +6,7 @@ import pickle
 
 class Student:
     # Class dictionary to store all student objects
-    student_database = {}
+    database = {}
 
     # Segregate Students to their designated Section
     SECTIONS = {'A': [], 'B': [], 'C': []}
@@ -21,7 +21,7 @@ class Student:
         self.email = email
         self.phone_number = phone_number
 
-        self.student_database[int(self.number)] = self.to_dict()
+        self.database[int(self.number)] = self.to_dict()
         self.save_students()
 
     def __str__(self):
@@ -104,8 +104,9 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     def count(cls, section):
         section = section.upper()
         if section not in cls.SECTIONS:
-            raise ValueError('Invalid Section')
-        return 'Number of students in Section {}: {}'.format(section, len(cls.SECTIONS[section]))
+            raise ValueError('Invalid Section'.upper())
+        print(cls.database)
+        return 'Section {} TOTAL COUNT: {}'.format(section, len(cls.SECTIONS[section]))
 
     # returns the number of Overall Students
     @classmethod
@@ -121,7 +122,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     @classmethod
     def data(cls):
         table = []
-        sorted_dict = dict(sorted(cls.student_database.items()))
+        sorted_dict = dict(sorted(cls.database.items()))
         for number, infos in sorted_dict.items():
             combined = []
             info = []
@@ -141,7 +142,7 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     @classmethod
     def save_students(cls):
         with open('student_data.pkl', 'wb') as file:
-            pickle.dump(cls.student_database, file)
+            pickle.dump(cls.database, file)
 
     @classmethod
     def load_students(cls):
@@ -153,11 +154,11 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
 
     @classmethod
     def remove(cls, number):
-        cls.student_database.pop(number, None)
+        cls.database.pop(number, None)
 
     @classmethod
     def update(cls, name, change, to):
-        for number, info in cls.student_database.items():
-            last_name = cls.student_database[number]['name'].split(',')
+        for number, info in cls.database.items():
+            last_name = cls.database[number]['name'].split(',')
             if last_name[0] == name:
-                cls.student_database[number][change] = to
+                cls.database[number][change] = to

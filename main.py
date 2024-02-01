@@ -1,8 +1,13 @@
 from Class import Student
 from Function import students_object
+Student = Student.Student
 
 def main():
-    pass
+    bert1 = Student('Johnbert Malinis', 202210612, 'A')
+    bert2 = Student('Johnbert Malinis', 202210612, 'B')
+
+    list = [bert1, bert2]
+
 
 
 
