@@ -69,8 +69,8 @@ def handle_user_input():
                                     section = input('COUNT SECTION: ').upper()
                                     print(Student.count(section))
                                 case 'G':
-                                    for _ in students:
-                                        print(_)
+                                    for keys, values in students.items():
+                                        print(f'{values}')
                                 case 'X':
                                     break
                                 case '_':
