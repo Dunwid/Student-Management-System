@@ -73,7 +73,7 @@ class Student:
         if section not in ['A', 'B', 'C']:
             raise ValueError('Invalid Section')
         self._section = section
-        self.SECTIONS[self.section] = [self.fullname]
+        self.SECTIONS[self.section].append(self.fullname)
 
     # Prints name in firstname lastname format
     @property
@@ -133,9 +133,9 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     # returns the number of Overall Students
     @classmethod
     def count_all(cls):
-        a = len(Student.SECTIONS['A'])
-        b = len(Student.SECTIONS['B'])
-        c = len(Student.SECTIONS['C'])
+        a = len(cls.SECTIONS['A'])
+        b = len(cls.SECTIONS['B'])
+        c = len(cls.SECTIONS['C'])
         overall = a + b + c
         table = [['Section A', a], ['Section B', b], ['Section C', c], ['Overall', overall]]
         headers = ['Section', 'Number of\nStudents']
