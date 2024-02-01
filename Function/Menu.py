@@ -97,9 +97,7 @@ def display_menu():
              ['U', 'Update Students List'], ['D', 'Delete Students List'],
              ['X', 'Exit Program'], ['O', 'Options']
              ]
-
-    print("-----------display_menu------------")
-    print(tabulate(table, tablefmt="grid"))
+    print(tabulate(table, headers=['KEY', 'MENU LISTS'], tablefmt="grid"))
 
 def display_options():
     table = [['V', 'View all sections'], ['Z', 'View Students in Section'], ['G', 'Greet all'], ['X', 'Exit Options']]
