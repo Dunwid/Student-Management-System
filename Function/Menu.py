@@ -14,7 +14,7 @@ def handle_user_input():
     students = ()
     while True:
         try:
-            user_input = input('Enter key: ').upper()
+            user_input = input('ENTER KEY: ').upper()
             match user_input:
                 case 'C':
                     num_students = int(input('How many students? '))
@@ -56,28 +56,54 @@ def handle_user_input():
                 case 'D':
                     number = int(input("Enter Student Number: "))
                     Student.remove(number)
-                case 'S':
-                    print("Wednesday")
+                # case 'S':
+                #     print("Wednesday")
                 case 'O':
-                    print("Wednesday")
+                    display_options()
+                    while True:
+                        user_input = input('ENTER KEY: ').upper()
+                        try:
+                            match user_input:
+                                case 'V':
+                                    ...
+                                case 'Z':
+                                    ...
+                                case 'G':
+                                    ...
+                                case 'X':
+                                    break
+                                case '_':
+                                    raise ValueError
+                        except ValueError:
+                            print('INVALID COMMAND!')
                 case 'X':
                     break
                 case _:
                     raise ValueError
         except ValueError:
-            print('Invalid command')
+            print('INVALID COMMAND!')
         except EOFError:
             break
     members()
 
 
 def display_menu():
+    # table = [['C', 'Create Students List'], ['R', 'Read Students List'],
+    #          ['U', 'Update Students List'], ['D', 'Delete Students List'],
+    #          ['S', 'Save List'], ['X', 'Exit Program'], ['O', 'Options']
+    #          ]
     table = [['C', 'Create Students List'], ['R', 'Read Students List'],
              ['U', 'Update Students List'], ['D', 'Delete Students List'],
-             ['S', 'Save List'], ['X', 'Exit Program'], ['O', 'Options']
+             ['X', 'Exit Program'], ['O', 'Options']
              ]
+
     print("-----------display_menu------------")
     print(tabulate(table, tablefmt="grid"))
+
+def display_options():
+    table = [['V', 'View all sections'], ['Z', 'Count Student in Section'], ['G', 'Greet all'], ['X', 'Exit Options']]
+    print("-----------OPTIONS------------")
+    print(tabulate(table, headers=['OPTIONS'], tablefmt="grid"))
 
 
 def members():
