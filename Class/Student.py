@@ -102,10 +102,33 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
     # returns the number of student per section
     @classmethod
     def count(cls, section):
+        section_students = []
         section = section.upper()
         if section not in cls.SECTIONS:
             raise ValueError('Invalid Section'.upper())
-        return 'Section {} TOTAL COUNT: {}'.format(section, len(cls.SECTIONS[section]))
+        for number, infos in cls.database.items():
+            for k, v in infos.items():
+                if v == section:
+                    name = cls.database[number]['name']
+                    name = name.strip()
+                    if matches := re.match(r"^([A-za-z ]+), ([A-za-z ]+).?,? ?(Jr.?|Sr.?)?$", name):
+                        if matches.group(3):
+                            name = "{} {} {}".format(matches.group(2), matches.group(1), matches.group(3))
+                        else:
+                            name = "{} {}".format(matches.group(2), matches.group(1))
+                    section_students.append(name)
+        i = 1
+        table = []
+        for student in section_students:
+            countings = []
+            countings.append(i)
+            countings.append(student)
+            table.append(countings)
+            i += 1
+        count = [f'TOTAL COUNT:', f'{len(cls.SECTIONS[section])}']
+        table.append(count)
+        return tabulate(table, headers=[f'LIST OF STUDENTS FROM SECTION {section}'], tablefmt="grid")
+        # return 'Section {} TOTAL COUNT: {}'.format(section, len(cls.SECTIONS[section]))
 
     # returns the number of Overall Students
     @classmethod
