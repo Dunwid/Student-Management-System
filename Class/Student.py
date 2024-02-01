@@ -137,3 +137,9 @@ Phone Number: {}""".format(self.age, self.address, self.email, self.phone_number
                 return pickle.load(f)  # deserialize using load()
         except FileNotFoundError:
             print('File does not exist')
+
+    @classmethod
+    def remove_students(cls, number):
+        cls.student_database.pop(number, None)
+
+

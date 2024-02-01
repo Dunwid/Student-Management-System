@@ -26,7 +26,8 @@ def handle_user_input():
                 case 'U':
                     pass
                 case 'D':
-                    print("Saturday")
+                    remove = int(input("Enter Student Number: "))
+                    Student.remove_students(remove)
                 case 'S':
                     print("Wednesday")
                 case 'O':
