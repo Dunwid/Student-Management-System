@@ -18,13 +18,16 @@ def handle_user_input():
             user_input = input('ENTER KEY: ').upper()
             match user_input:
                 case 'C':
+                    fails = 0
                     num_students = int(input('How many students? '))
                     try:
                         if isinstance(num_students, int):
-                            students = generate_student_data(num_students)
+                            students= generate_student_data(num_students)
                             all_students.append(students)
-                    except ValueError:
-                        print(f'{num_students - len(students)} IMPROPER NAME FORMAT')
+                    except:
+                        print(count)
+                    if fails > 0:
+                        print(f'{fails} IMPROPER NAME FORMAT')
                     successful = len(students)
                     if successful > 1:
                         print(f'Successfully generated {successful} students.')

@@ -13,7 +13,6 @@ def main():
 # Generate the lists of Students
 # Returns a list
 # Asks for an int argument, additional_info is optional
-# Will limit num_students into 20 to avoid crash
 # Provide additional_info=True, if personal information was needed.
 def generate_students(num_students, additional_info=False):
     if isinstance(num_students, int) and num_students > 0:
