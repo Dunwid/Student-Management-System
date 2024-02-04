@@ -19,9 +19,17 @@ def handle_user_input():
             match user_input:
                 case 'C':
                     num_students = int(input('How many students? '))
-                    if isinstance(num_students, int):
-                        students = generate_student_data(num_students)
-                        all_students.append(students)
+                    try:
+                        if isinstance(num_students, int):
+                            students = generate_student_data(num_students)
+                            all_students.append(students)
+                    except ValueError:
+                        print(f'{num_students - len(students)} IMPROPER NAME FORMAT')
+                    successful = len(students)
+                    if successful > 1:
+                        print(f'Successfully generated {successful} students.')
+                    else:
+                        print(f'Successfully generated {successful} student.')
                 case 'R':
                     print(Student.data())
                 case 'U':
